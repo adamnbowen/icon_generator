@@ -6,12 +6,20 @@ class IconGenerator < Thor
     def touch(source, destination)
         validator = IconGenerator::Validator.new
         validator.validate_arguments source, destination
-        builder = IconGenerator::Builder.new source, destination
+        builder = IconGenerator::TouchBuilder.new source, destination
+        builder.build
+    end
+
+    desc 'favicon', 'Generate favicon'
+    def favicon(source, destination)
+        validator = IconGenerator::Validator.new
+        validator.validate_arguments source, destination
+        builder = IconGenerator::FaviconBuilder.new source, destination
         builder.build
     end
 end
 
-class IconGenerator::Builder
+class IconGenerator::TouchBuilder
     def initialize(source, destination)
         @source = source
         @destination = destination
@@ -36,6 +44,24 @@ class IconGenerator::Builder
 
     def build_size(size, new_image)
         %x[convert '#{@source}' -resize #{size}! #{new_image}]
+        file_status new_image
+    end
+
+    def file_status(filename)
+        raise IconGenerator::Error unless File.exists? filename
+        puts Thor::Shell::Color.new.set_color("Built #{filename}", :green)
+    end
+end
+
+class IconGenerator::FaviconBuilder
+    def initialize(source, destination)
+        @source = source
+        @destination = destination
+    end
+
+    def build
+        new_image = "#{@destination}/favicon.ico"
+        %x[convert '#{@source}' -resize 16x16! -flatten -colors 256 -background transparent #{new_image}]
         file_status new_image
     end
 
