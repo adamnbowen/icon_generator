@@ -1,0 +1,68 @@
+#!/usr/bin/env ruby
+require "thor"
+
+class IconGenerator < Thor
+    desc 'touch', 'Generate apple-touch-icons'
+    def touch(source, destination)
+        validator = IconGenerator::Validator.new
+        validator.validate_arguments source, destination
+        builder = IconGenerator::Builder.new source, destination
+        builder.build
+    end
+end
+
+class IconGenerator::Builder
+    def initialize(source, destination)
+        @source = source
+        @destination = destination
+        @sizes = [
+            '144x144',
+            '114x114',
+            '72x72',
+            '57x57',
+        ]
+    end
+
+    def build
+        @sizes.each do |size|
+            new_image = "#{@destination}/apple-touch-icon-#{size}-precomposed.png"
+            build_size(size, new_image)
+            if size == '57x57'
+                build_size('57x57', "#{@destination}/apple-touch-icon-precomposed.png")
+                build_size('57x57', "#{@destination}/apple-touch-icon.png")
+            end
+        end
+    end
+
+    def build_size(size, new_image)
+        %x[convert '#{@source}' -resize #{size}! #{new_image}]
+        file_status new_image
+    end
+
+    def file_status(filename)
+        raise IconGenerator::Error unless File.exists? filename
+        puts Thor::Shell::Color.new.set_color("Built #{filename}", :green)
+    end
+end
+
+class IconGenerator::Validator
+    def initialize
+        @errors = []
+    end
+
+    def validate_arguments(source, destination)
+        @errors << '1st argument must be a valid png' unless source.match /\.png$/
+        @errors << '1st argument must be an existing file' unless File.exists? source
+        @errors << '2nd argument must be an existing directory' unless Dir.exists? destination
+
+        raise IconGenerator::Error, @errors.first unless @errors.empty?
+    end
+end
+
+class IconGenerator::Error < Thor::Error
+    def initialize(message = "Icon generation failed")
+        super(Thor::Shell::Color.new.set_color message, :red)
+    end
+end
+
+IconGenerator.start(ARGV)

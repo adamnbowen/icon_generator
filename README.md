@@ -1,24 +1,14 @@
 # IconGenerator
 
-TODO: Write a gem description
+Generates Apple Touch Icons or a favicon given a square image.
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'icon_generator'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
 
     $ gem install icon_generator
 
 ## Usage
 
-TODO: Write usage instructions here
+    $ icon_generator touch my/source/file.png my/output/directory
 
 ## Contributing
 
