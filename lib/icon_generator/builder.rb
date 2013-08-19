@@ -1,10 +1,18 @@
 module IconGenerator
     class Builder
-        def build(type, source, destination)
+        include IconGenerator::Validator
+
+        def initialize(source, destination)
+            @source = source
+            @destination = destination
+            validate_arguments @source, @destination
+        end
+
+        def build(type)
             if type == :touch
-                IconGenerator::TouchBuilder.new.build(source, destination)
+                IconGenerator::TouchBuilder.new.build(@source, @destination)
             elsif type == :favicon
-                IconGenerator::FaviconBuilder.new.build(source, destination)
+                IconGenerator::FaviconBuilder.new.build(@source, @destination)
             end
         end
     end
