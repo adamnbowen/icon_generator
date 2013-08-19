@@ -8,9 +8,19 @@ Generates Apple Touch Icons or a favicon given a square image.
 
     $ gem install icon_generator
 
+## Dependencies
+
+* Ruby 2.0.0 (May work on earlier versions, I haven't tested)
+* ImageMagick
+* [Thor](http://whatisthor.com/)
+
 ## Usage
 
     $ icon_generator touch my/source/file.png my/output/directory
+
+## Testing
+
+    $ rake test
 
 ## Contributing
 
