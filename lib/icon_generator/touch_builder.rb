@@ -1,8 +1,6 @@
 module IconGenerator
     class TouchBuilder
-        def initialize(source, destination)
-            @source = source
-            @destination = destination
+        def initialize
             @sizes = [
                 '144x144',
                 '114x114',
@@ -11,19 +9,19 @@ module IconGenerator
             ]
         end
 
-        def build
+        def build(source, destination)
             @sizes.each do |size|
-                new_image = "#{@destination}/apple-touch-icon-#{size}-precomposed.png"
-                build_size(size, new_image)
+                new_image = "#{destination}/apple-touch-icon-#{size}-precomposed.png"
+                build_size(source, size, new_image)
                 if size == '57x57'
-                    build_size('57x57', "#{@destination}/apple-touch-icon-precomposed.png")
-                    build_size('57x57', "#{@destination}/apple-touch-icon.png")
+                    build_size(source, '57x57', "#{destination}/apple-touch-icon-precomposed.png")
+                    build_size(source, '57x57', "#{destination}/apple-touch-icon.png")
                 end
             end
         end
 
-        def build_size(size, new_image)
-            %x[convert '#{@source}' -resize #{size}! #{new_image}]
+        def build_size(source, size, new_image)
+            %x[convert '#{source}' -resize #{size}! #{new_image}]
             file_status new_image
         end
 
