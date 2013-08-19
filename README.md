@@ -1,9 +1,10 @@
 # IconGenerator
 
 [![Code Climate](https://codeclimate.com/github/adamnbowen/icon_generator.png)](https://codeclimate.com/github/adamnbowen/icon_generator)
+[![Build Status](https://travis-ci.org/adamnbowen/icon_generator.png)](https://travis-ci.org/adamnbowen/icon_generator)
 
-Generates Apple Touch Icons or a multiresolution (32x32 and 16x16) favicon given
-a square image.
+Generates Apple Touch Icons or a multiresolution (32x32 and 16x16)
+favicon given a square image.
 
 ## Installation
 
@@ -11,7 +12,7 @@ a square image.
 
 ## Dependencies
 
-* Ruby 2.0.0 (May work on earlier versions, I haven't tested)
+* Ruby 1.9.3 and up
 * ImageMagick
 * [Thor](http://whatisthor.com/)
 
