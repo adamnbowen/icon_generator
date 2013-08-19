@@ -1,5 +1,7 @@
 module IconGenerator
     class TouchBuilder
+        include IconGenerator::Validator
+
         def initialize
             @sizes = [
                 '144x144',
@@ -22,12 +24,8 @@ module IconGenerator
 
         def build_size(source, size, new_image)
             %x[convert '#{source}' -resize #{size}! #{new_image}]
-            file_status new_image
-        end
-
-        def file_status(filename)
-            raise IconGenerator::Error unless File.exists? filename
-            puts Thor::Shell::Color.new.set_color("Built #{filename}", :green)
+            validate_file_status new_image
+            puts Thor::Shell::Color.new.set_color("Built #{new_image}", :green)
         end
     end
 end

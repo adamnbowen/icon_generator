@@ -1,15 +1,14 @@
 module IconGenerator
-    class Validator
-        def initialize
-            @errors = []
+    module Validator
+        def validate_arguments(source, destination)
+            raise IconGenerator::Error, '1st argument must be a valid png' unless source.match /\.png$/
+            raise IconGenerator::Error, '1st argument must be an existing file' unless File.exists? source
+            raise IconGenerator::Error, '2nd argument must be an existing directory' unless Dir.exists? destination
         end
 
-        def validate_arguments(source, destination)
-            @errors << '1st argument must be a valid png' unless source.match /\.png$/
-            @errors << '1st argument must be an existing file' unless File.exists? source
-            @errors << '2nd argument must be an existing directory' unless Dir.exists? destination
 
-            raise IconGenerator::Error, @errors.first unless @errors.empty?
+        def validate_file_status(filename)
+            raise IconGenerator::Error unless File.exists? filename
         end
     end
 end
