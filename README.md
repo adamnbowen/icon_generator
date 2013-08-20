@@ -1,5 +1,6 @@
 # IconGenerator
 
+[![Gem Version](https://badge.fury.io/rb/icon_generator.png)](http://badge.fury.io/rb/icon_generator)
 [![Code Climate](https://codeclimate.com/github/adamnbowen/icon_generator.png)](https://codeclimate.com/github/adamnbowen/icon_generator)
 [![Build Status](https://travis-ci.org/adamnbowen/icon_generator.png)](https://travis-ci.org/adamnbowen/icon_generator)
 
