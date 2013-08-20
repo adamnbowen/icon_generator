@@ -1,4 +1,12 @@
 module IconGenerator
+    # Module intended to be used as a convenient mixin.
+    #
+    # @example Including the validator in a class
+    #    class Foo
+    #        include IconGenerator::Validator
+    #        # Now you can use validate_arguments and
+    #        # validate_file_status as if they were your very own.
+    #    end
     module Validator
         # Validates the given source image file and the destination
         # directory for correctness.
