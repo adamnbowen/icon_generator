@@ -3,7 +3,6 @@
 [![Gem Version](https://badge.fury.io/rb/icon_generator.png)](http://badge.fury.io/rb/icon_generator)
 [![Code Climate](https://codeclimate.com/github/adamnbowen/icon_generator.png)](https://codeclimate.com/github/adamnbowen/icon_generator)
 [![Build Status](https://travis-ci.org/adamnbowen/icon_generator.png)](https://travis-ci.org/adamnbowen/icon_generator)
-[![Dependency Status](https://gemnasium.com/adamnbowen/icon_generator.png)](https://gemnasium.com/adamnbowen/icon_generator)
 
 Generates Apple Touch Icons or a multiresolution (32x32 and 16x16)
 favicon given a square image.
