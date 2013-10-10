@@ -24,6 +24,11 @@ To generate a set of apple-touch-icons:
 
     $ icon_generator touch my/source/file.png my/output/directory
 
+To generate a single 152x152 apple-touch-icon-precomposed.png:
+
+    $ icon_generator touch my/source/file.png my/output/directory --single
+
+
 To generate a multiresolution favicon:
 
     $ icon_generator favicon my/source/file.png my/output/directory

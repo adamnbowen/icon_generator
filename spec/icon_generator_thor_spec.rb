@@ -14,7 +14,14 @@ describe IconGenerator::Thor do
         tempfile = Tempfile.new ['test', '.png']
         %x[convert -size 1x1 canvas:khaki #{tempfile.path}]
         stdout = %x[bundle exec bin/icon_generator touch #{tempfile.path} #{tmp}]
-        stdout.must_include "Built #{tmp}/apple-touch-icon.png"
+        stdout.must_include "Built #{tmp}/apple-touch-icon-precomposed.png"
+    end
+
+    it "can generate a single apple-touch-icon-precomposed" do
+        tempfile = Tempfile.new ['test', '.png']
+        %x[convert -size 1x1 canvas:khaki #{tempfile.path}]
+        stdout = %x[bundle exec bin/icon_generator touch #{tempfile.path} #{tmp} --single]
+        stdout.must_equal "\e[32mBuilt #{tmp}/apple-touch-icon-precomposed.png\e[0m\n"
     end
 
     it "can take both favicon and touch commands at once" do
@@ -24,7 +31,7 @@ describe IconGenerator::Thor do
         %x[convert -size 1x1 canvas:khaki #{favicon.path}]
         stdout = %x[bundle exec bin/icon_generator generate --touch #{touch.path} --favicon #{favicon.path} #{tmp}]
         stdout.must_include "Built #{tmp}/favicon.ico"
-        stdout.must_include "Built #{tmp}/apple-touch-icon.png"
+        stdout.must_include "Built #{tmp}/apple-touch-icon-precomposed.png"
     end
 
     it "can build either touch or favicon alone from generate" do
@@ -33,7 +40,7 @@ describe IconGenerator::Thor do
         %x[convert -size 1x1 canvas:khaki #{touch.path}]
         %x[convert -size 1x1 canvas:khaki #{favicon.path}]
         stdout = %x[bundle exec bin/icon_generator generate --touch #{touch.path} #{tmp}]
-        stdout.must_include "Built #{tmp}/apple-touch-icon.png"
+        stdout.must_include "Built #{tmp}/apple-touch-icon-precomposed.png"
         stdout = %x[bundle exec bin/icon_generator generate --favicon #{favicon.path} #{tmp}]
         stdout.must_include "Built #{tmp}/favicon.ico"
     end

@@ -39,9 +39,10 @@ describe IconGenerator do
         stdout = capture_io { builder.build(:touch) }.to_s
 
         files = [
-            "#{tmp}/apple-touch-icon.png",
             "#{tmp}/apple-touch-icon-precomposed.png",
+            "#{tmp}/apple-touch-icon-152x152-precomposed.png",
             "#{tmp}/apple-touch-icon-144x144-precomposed.png",
+            "#{tmp}/apple-touch-icon-120x120-precomposed.png",
             "#{tmp}/apple-touch-icon-114x114-precomposed.png",
             "#{tmp}/apple-touch-icon-72x72-precomposed.png",
             "#{tmp}/apple-touch-icon-57x57-precomposed.png",
@@ -60,7 +61,7 @@ describe IconGenerator do
         stdout_favicon = capture_io { builder.build(:favicon) }.to_s
         stdout_favicon.must_include "Built #{tmp}/favicon.ico"
         stdout_touch = capture_io { builder.build(:touch) }.to_s
-        stdout_touch.must_include "Built #{tmp}/apple-touch-icon.png"
+        stdout_touch.must_include "Built #{tmp}/apple-touch-icon-precomposed.png"
     end
 
     it "works with gifs as a source file" do
@@ -70,6 +71,6 @@ describe IconGenerator do
         stdout_favicon = capture_io { builder.build(:favicon) }.to_s
         stdout_favicon.must_include "Built #{tmp}/favicon.ico"
         stdout_touch = capture_io { builder.build(:touch) }.to_s
-        stdout_touch.must_include "Built #{tmp}/apple-touch-icon.png"
+        stdout_touch.must_include "Built #{tmp}/apple-touch-icon-precomposed.png"
     end
 end

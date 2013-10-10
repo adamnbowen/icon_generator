@@ -23,5 +23,16 @@ module IconGenerator
                 IconGenerator::FaviconBuilder.new.build(@source, @destination)
             end
         end
+
+        # Requests a build of the given image type.
+        #
+        # @param type [Symbol] the image type, `:touch` or `:favicon`
+        def build_single(type)
+            if type == :touch
+                IconGenerator::TouchBuilder.new.build_single(@source, @destination)
+            elsif type == :favicon
+                IconGenerator::FaviconBuilder.new.build_single(@source, @destination)
+            end
+        end
     end
 end

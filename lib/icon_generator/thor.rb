@@ -1,8 +1,10 @@
 module IconGenerator
     class Thor < Thor
         desc 'touch', 'Generate apple-touch-icons'
+        option :single
         def touch(source, destination)
-            IconGenerator::Builder.new(source, destination).build(:touch)
+            builder = IconGenerator::Builder.new(source, destination)
+            options[:single] ? builder.build_single(:touch) : builder.build(:touch)
         end
 
         desc 'favicon', 'Generate favicon'
