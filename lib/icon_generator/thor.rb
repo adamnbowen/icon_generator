@@ -4,7 +4,7 @@ module IconGenerator
         option :single
         def touch(source, destination)
             builder = IconGenerator::Builder.new(source, destination)
-            options[:single] ? builder.build_single(:touch) : builder.build(:touch)
+            options[:single] ? builder.build_single() : builder.build(:touch)
         end
 
         desc 'favicon', 'Generate favicon'
