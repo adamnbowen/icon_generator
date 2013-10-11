@@ -44,6 +44,7 @@ describe IconGenerator do
             "#{tmp}/apple-touch-icon-144x144-precomposed.png",
             "#{tmp}/apple-touch-icon-120x120-precomposed.png",
             "#{tmp}/apple-touch-icon-114x114-precomposed.png",
+            "#{tmp}/apple-touch-icon-76x76-precomposed.png",
             "#{tmp}/apple-touch-icon-72x72-precomposed.png",
             "#{tmp}/apple-touch-icon-57x57-precomposed.png",
         ]
