@@ -5,6 +5,8 @@
 [![Build Status](https://travis-ci.org/adamnbowen/icon_generator.png)](https://travis-ci.org/adamnbowen/icon_generator)
 [![Dependency Status](https://gemnasium.com/adamnbowen/icon_generator.png)](https://gemnasium.com/adamnbowen/icon_generator)
 
+❗Note that this project is unmaintained
+
 Generates Apple Touch Icons or a multiresolution (32x32 and 16x16)
 favicon given a square image.
 
